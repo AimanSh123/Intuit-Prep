@@ -1,0 +1,44 @@
+class Solution {
+    
+    static void bfs(ArrayList<Pair> adj[], int sr, boolean vis[], int dis[]){
+        vis[sr]=true;
+        PriorityQueue<Pair> q = new PriorityQueue<>((x,y)->Integer.compare(x.c,y.c));
+        q.add(new Pair(sr,0));
+        while(!q.isEmpty()){
+            Pair p = q.poll();
+            for(Pair j:adj[p.s]){
+               if(dis[j.s]>p.c+j.c){
+                   dis[j.s]=p.c+j.c;
+                   q.add(new Pair(j.s,dis[j.s]));
+               }
+            }
+        }
+    }
+    static class Pair{
+        int s;
+        int c;
+        Pair(int s,int c){
+            this.s=s;
+            this.c=c;
+        }
+    }
+    public static int minimumEdgeReversal(int[][] edges, int n, int m, int src, int dst) {
+        // code here
+        if(src==dst)return 0;
+        ArrayList<Pair> adj[] = new ArrayList[n+1];
+        for(int i=0;i<n+1;i++)adj[i]=new ArrayList<>();
+        for(int d[]:edges){
+          adj[d[0]].add(new Pair(d[1],0));
+          adj[d[1]].add(new Pair(d[0],1));
+        }
+       // System.out.print("Fg");
+        boolean vis[] = new boolean[n+1];
+        int dis[] = new int[n+1];
+        Arrays.fill(dis,Integer.MAX_VALUE);
+        bfs(adj,src,vis,dis);
+        for(int i=0;i<n+1;i++)if(dis[i]==Integer.MAX_VALUE)dis[i]=-1;
+        return dis[dst];
+        
+    }
+}
+        
