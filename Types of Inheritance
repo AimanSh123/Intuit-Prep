@@ -1,0 +1,94 @@
+//1. Single Inheritance
+class Animal {
+    void eat() {
+        System.out.println("Eating...");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Barking...");
+    }
+}
+//2. Multi-level Inheritance
+class Animal {
+    void eat() {
+        System.out.println("Eating...");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Barking...");
+    }
+}
+
+class Puppy extends Dog {
+    void weep() {
+        System.out.println("Weeping...");
+    }
+}
+//3. Hierarchical Inheritance
+class Animal {
+    void eat() {
+        System.out.println("Eating...");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Barking...");
+    }
+}
+
+class Cat extends Animal {
+    void meow() {
+        System.out.println("Meowing...");
+    }
+}
+//4. Multiple Inheritance (through Interfaces)
+interface CanRun {
+    void run();
+}
+
+interface CanBark {
+    void bark();
+}
+
+class Dog implements CanRun, CanBark {
+    @Override
+    public void run() {
+        System.out.println("Dog is running...");
+    }
+
+    @Override
+    public void bark() {
+        System.out.println("Dog is barking...");
+    }
+}
+//5. Hybrid Inheritance
+interface CanRun {
+    void run();
+}
+
+interface CanBark {
+    void bark();
+}
+
+class Animal {
+    void eat() {
+        System.out.println("Eating...");
+    }
+}
+
+class Dog extends Animal implements CanRun, CanBark {
+    @Override
+    public void run() {
+        System.out.println("Dog is running...");
+    }
+
+    @Override
+    public void bark() {
+        System.out.println("Dog is barking...");
+    }
+}
