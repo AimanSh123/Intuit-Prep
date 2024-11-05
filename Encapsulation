@@ -1,0 +1,75 @@
+public class Student {
+    // Private fields to encapsulate data
+    private String name;
+    private int age;
+    private double grade;
+
+    // Constructor to initialize name, age, and grade with validation
+    public Student(String name, int age, double grade) {
+        this.name = name;
+        setAge(age);     // Using setter to ensure valid age
+        setGrade(grade); // Using setter to ensure valid grade
+    }
+
+    // Getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Setter for name with validation
+    public void setName(String name) {
+        if (name != null && !name.isEmpty()) {
+            this.name = name;
+        } else {
+            System.out.println("Name cannot be empty.");
+        }
+    }
+
+    // Getter for age
+    public int getAge() {
+        return age;
+    }
+
+    // Setter for age with validation
+    public void setAge(int age) {
+        if (age > 0 && age < 120) { // Simple age validation
+            this.age = age;
+        } else {
+            System.out.println("Invalid age. Age should be between 1 and 119.");
+        }
+    }
+
+    // Getter for grade
+    public double getGrade() {
+        return grade;
+    }
+
+    // Setter for grade with validation
+    public void setGrade(double grade) {
+        if (grade >= 0.0 && grade <= 100.0) { // Valid grade range: 0 to 100
+            this.grade = grade;
+        } else {
+            System.out.println("Grade must be between 0 and 100.");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student student = new Student("Alice", 20, 85.5); // Initial data setup
+        System.out.println("Name: " + student.getName());
+        System.out.println("Age: " + student.getAge());
+        System.out.println("Grade: " + student.getGrade());
+
+        // Trying to set invalid data
+        student.setAge(130);    // Should print error
+        student.setGrade(105);  // Should print error
+
+        // Setting valid data
+        student.setAge(21);     // Valid age update
+        student.setGrade(90.0); // Valid grade update
+
+        System.out.println("Updated Age: " + student.getAge());
+        System.out.println("Updated Grade: " + student.getGrade());
+    }
+}
