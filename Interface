@@ -1,0 +1,37 @@
+// Interface declaration
+interface Animal {
+    void eat(); // Abstract method
+
+    default void sleep() { // Default method
+        System.out.println("Sleeping...");
+    }
+}
+
+// Class Dog implements the Animal interface
+class Dog implements Animal {
+    @Override
+    public void eat() {
+        System.out.println("Dog is eating...");
+    }
+}
+
+// Class Cat implements the Animal interface
+class Cat implements Animal {
+    @Override
+    public void eat() {
+        System.out.println("Cat is eating...");
+    }
+}
+
+// Main class to test the interface
+public class Main {
+    public static void main(String[] args) {
+        Animal dog = new Dog();
+        dog.eat();    // Output: Dog is eating...
+        dog.sleep();  // Output: Sleeping...
+
+        Animal cat = new Cat();
+        cat.eat();    // Output: Cat is eating...
+        cat.sleep();  // Output: Sleeping...
+    }
+}
