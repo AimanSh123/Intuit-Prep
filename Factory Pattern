@@ -1,0 +1,48 @@
+// Product Interface
+interface Animal {
+    void speak();
+}
+
+// Concrete Products
+class Dog implements Animal {
+    public void speak() {
+        System.out.println("Woof");
+    }
+}
+
+class Cat implements Animal {
+    public void speak() {
+        System.out.println("Meow");
+    }
+}
+
+// Creator Abstract Class
+abstract class AnimalFactory {
+    abstract Animal createAnimal(); // Factory Method
+}
+
+// Concrete Creator Classes
+class DogFactory extends AnimalFactory {
+    Animal createAnimal() {
+        return new Dog(); // Create Dog
+    }
+}
+
+class CatFactory extends AnimalFactory {
+    Animal createAnimal() {
+        return new Cat(); // Create Cat
+    }
+}
+
+// Client Code
+public class Main {
+    public static void main(String[] args) {
+        AnimalFactory dogFactory = new DogFactory();
+        Animal dog = dogFactory.createAnimal();
+        dog.speak(); // Output: Woof
+
+        AnimalFactory catFactory = new CatFactory();
+        Animal cat = catFactory.createAnimal();
+        cat.speak(); // Output: Meow
+    }
+}
