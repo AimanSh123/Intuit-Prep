@@ -1,0 +1,67 @@
+// Abstract Class
+abstract class BankAccount {
+    protected double balance;
+
+    public BankAccount(double balance) {
+        this.balance = balance;
+    }
+
+    // Abstract method for withdrawal, specific to each account type
+    public abstract void withdraw(double amount);
+
+    // General method for deposit
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposited: " + amount);
+    }
+
+    // General method to get balance
+    public double getBalance() {
+        return balance;
+    }
+}
+
+// Concrete Class for Savings Account
+class SavingsAccount extends BankAccount {
+    public SavingsAccount(double balance) {
+        super(balance);
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            System.out.println("Withdrew: " + amount);
+        } else {
+            System.out.println("Insufficient balance.");
+        }
+    }
+}
+
+// Concrete Class for Checking Account
+class CheckingAccount extends BankAccount {
+    public CheckingAccount(double balance) {
+        super(balance);
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        // Implement logic for overdraft if needed
+        balance -= amount;
+        System.out.println("Withdrew: " + amount);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BankAccount mySavings = new SavingsAccount(5000);
+        BankAccount myChecking = new CheckingAccount(2000);
+
+        mySavings.deposit(1000);
+        mySavings.withdraw(200);
+        System.out.println("Savings Balance: " + mySavings.getBalance());
+
+        myChecking.withdraw(500);
+        System.out.println("Checking Balance: " + myChecking.getBalance());
+    }
+}
